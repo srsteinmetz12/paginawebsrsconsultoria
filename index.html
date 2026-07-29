@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SRS Consultoria TI - Gestão para Brechós</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚡</text></svg>">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #1E1E1E;
+            color: #FFFFFF;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* ===== HEADER ===== */
+        header {
+            background-color: #141414;
+            padding: 20px 0;
+            border-bottom: 2px solid #464646;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        header .logo h1 {
+            font-size: 24px;
+            letter-spacing: 3px;
+            font-weight: 900;
+            text-transform: uppercase;
+        }
+
+        header .logo h1 span {
+            color: #c9a84c;
+        }
+
+        header .logo p {
+            font-size: 12px;
+            color: #A0A0A0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: #A0A0A0;
+            font-size: 14px;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: #c9a84c;
+        }
+
+        /* ===== HERO ===== */
+        .hero {
+            padding: 80px 0 60px;
+            text-align: center;
+            background: linear-gradient(135deg, #141414 0%, #2D2D2D 100%);
+            border-bottom: 1px solid #464646;
+        }
+
+        .hero h2 {
+            font-size: 48px;
+            font-weight: 900;
+            margin-bottom: 15px;
+            letter-spacing: 2px;
+        }
+
+        .hero h2 span {
+            color: #c9a84c;
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: #A0A0A0;
+            max-width: 700px;
+            margin: 0 auto 30px;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: #c9a84c;
+            color: #1E1E1E;
+            padding: 14px 40px;
+            font-weight: 700;
+            font-size: 16px;
+            border-radius: 8px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s, transform 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background-color: #b8963a;
+            transform: translateY(-3px);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: #FFFFFF;
+            border: 2px solid #c9a84c;
+            margin-left: 15px;
+        }
+
+        .btn-outline:hover {
+            background: #c9a84c;
+            color: #1E1E1E;
+        }
+
+        /* ===== SEÇÕES ===== */
+        section {
+            padding: 60px 0;
+            border-bottom: 1px solid #2D2D2D;
+        }
+
+        section:last-of-type {
+            border-bottom: none;
+        }
+
+        .section-title {
+            font-size: 32px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-title span {
+            color: #c9a84c;
+        }
+
+        /* ===== SOBRE ===== */
+        .sobre-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .sobre-grid p {
+            color: #A0A0A0;
+            font-size: 16px;
+        }
+
+        .sobre-grid .destaque {
+            color: #c9a84c;
+            font-weight: 700;
+        }
+
+        /* ===== SERVIÇOS ===== */
+        .servicos-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .servico-card {
+            background: #2D2D2D;
+            padding: 30px 25px;
+            border-radius: 12px;
+            border: 1px solid #464646;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .servico-card:hover {
+            transform: translateY(-8px);
+            border-color: #c9a84c;
+        }
+
+        .servico-card .icone {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+
+        .servico-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #c9a84c;
+        }
+
+        .servico-card p {
+            color: #A0A0A0;
+            font-size: 14px;
+        }
+
+        /* ===== DIFERENCIAIS ===== */
+        .diferenciais-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            text-align: center;
+        }
+
+        .diferencial-item .numero {
+            font-size: 36px;
+            font-weight: 900;
+            color: #c9a84c;
+        }
+
+        .diferencial-item p {
+            color: #A0A0A0;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        /* ===== CONTATO ===== */
+        .contato-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+        }
+
+        .contato-info p {
+            color: #A0A0A0;
+            margin-bottom: 10px;
+        }
+
+        .contato-info .destaque {
+            color: #c9a84c;
+            font-weight: 600;
+        }
+
+        .contato-form input,
+        .contato-form textarea {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            background: #2D2D2D;
+            border: 1px solid #464646;
+            border-radius: 8px;
+            color: #FFFFFF;
+            font-size: 14px;
+            font-family: inherit;
+        }
+
+        .contato-form input:focus,
+        .contato-form textarea:focus {
+            outline: none;
+            border-color: #c9a84c;
+        }
+
+        .contato-form textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .contato-form .btn {
+            width: 100%;
+        }
+
+        /* ===== RODAPÉ ===== */
+        footer {
+            background: #141414;
+            padding: 30px 0;
+            text-align: center;
+            border-top: 1px solid #2D2D2D;
+        }
+
+        footer p {
+            color: #555555;
+            font-size: 13px;
+        }
+
+        footer .social {
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        footer .social a {
+            color: #A0A0A0;
+            transition: color 0.3s;
+        }
+
+        footer .social a:hover {
+            color: #c9a84c;
+        }
+
+        /* ===== RESPONSIVIDADE ===== */
+        @media (max-width: 768px) {
+            header .container {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 32px;
+            }
+
+            .sobre-grid,
+            .contato-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+
+            .hero .btn {
+                display: block;
+                width: 100%;
+                max-width: 300px;
+                margin: 10px auto;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h2 {
+                font-size: 26px;
+            }
+
+            .section-title {
+                font-size: 26px;
+            }
+
+            .servicos-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>SRS<span>Consultoria</span> TI</h1>
+                <p>Gestão inteligente para brechós</p>
+            </div>
+            <nav>
+                <a href="#sobre">Sobre</a>
+                <a href="#servicos">Serviços</a>
+                <a href="#diferenciais">Diferenciais</a>
+                <a href="#contato">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- ===== HERO ===== -->
+    <section class="hero">
+        <div class="container">
+            <h2>Soluções <span>tecnológicas</span> para <span>brechós</span></h2>
+            <p>
+                Consultoria especializada, ERP próprio e desenvolvimento sob medida para lojas de moda circular.
+                Transforme seu brechó em um negócio escalável e lucrativo.
+            </p>
+            <div>
+                <a href="#contato" class="btn">Solicite uma demonstração</a>
+                <a href="#servicos" class="btn btn-outline">Conheça o ERP</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SOBRE ===== -->
+    <section id="sobre">
+        <div class="container">
+            <h2 class="section-title">Quem <span>somos</span></h2>
+            <div class="sobre-grid">
+                <div>
+                    <p style="margin-bottom: 15px;">
+                        A <span class="destaque">SRS Consultoria TI</span> une <span class="destaque">consultoria especializada</span> 
+                        com um <span class="destaque">ERP próprio</span> desenvolvido sob medida para brechós e lojas de moda circular.
+                    </p>
+                    <p>
+                        Oferecemos <span class="destaque">suporte personalizado</span> e <span class="destaque">desenvolvimento sob demanda</span>, 
+                        garantindo que sua operação tenha todas as ferramentas necessárias para crescer com segurança e lucratividade.
+                    </p>
+                </div>
+                <div style="background: #2D2D2D; padding: 30px; border-radius: 12px; border: 1px solid #464646;">
+                    <p style="color: #c9a84c; font-size: 20px; font-weight: 700; margin-bottom: 10px;">+ de 50 brechós atendidos</p>
+                    <p style="color: #A0A0A0; font-size: 14px;">
+                        Nossos clientes relatam <span style="color: #FFFFFF; font-weight: 600;">30% de aumento no faturamento</span> 
+                        com a combinação de consultoria e sistema ERP.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== SERVIÇOS ===== -->
+    <section id="servicos">
+        <div class="container">
+            <h2 class="section-title">Nossos <span>pilares</span></h2>
+            <div class="servicos-grid">
+                <div class="servico-card">
+                    <div class="icone">📊</div>
+                    <h3>Consultoria Especializada</h3>
+                    <p>Diagnóstico completo, planejamento estratégico, precificação, marketing e otimização de processos para brechós.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="icone">💻</div>
+                    <h3>ERP Próprio</h3>
+                    <p>Sistema de gestão desenvolvido por quem entende de brechó: controle de estoque, vendas, financeiro, etiquetas e muito mais.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="icone">🛠️</div>
+                    <h3>Desenvolvimento Sob Demanda</h3>
+                    <p>Funcionalidades personalizadas, integrações com e-commerce, automações e relatórios adaptados à sua operação.</p>
+                </div>
+                <div class="servico-card">
+                    <div class="icone">🧑‍💻</div>
+                    <h3>Suporte Personalizado</h3>
+                    <p>Atendimento direto com nossa equipe, treinamento para sua equipe e suporte contínuo para garantir o sucesso do seu negócio.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== DIFERENCIAIS ===== -->
+    <section id="diferenciais">
+        <div class="container">
+            <h2 class="section-title">Por que a <span>SRS</span>?</h2>
+            <div class="diferenciais-grid">
+                <div class="diferencial-item">
+                    <div class="numero">ERP</div>
+                    <p>Próprio, desenvolvido para brechós</p>
+                </div>
+                <div class="diferencial-item">
+                    <div class="numero">50+</div>
+                    <p>Brechós atendidos</p>
+                </div>
+                <div class="diferencial-item">
+                    <div class="numero">100%</div>
+                    <p>Foco em moda circular</p>
+                </div>
+                <div class="diferencial-item">
+                    <div class="numero">Sob medida</div>
+                    <p>Desenvolvimento e suporte personalizados</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== CONTATO ===== -->
+    <section id="contato">
+        <div class="container">
+            <h2 class="section-title">Fale com a <span>SRS</span></h2>
+            <div class="contato-grid">
+                <div class="contato-info">
+                    <p><span class="destaque">📞 Telefone:</span> (51) 98111-7127</p>
+                    <p><span class="destaque">✉️ E-mail:</span> contato@srsconsultoria.com.br</p>
+                    <p><span class="destaque">📍 Endereço:</span> Porto Alegre - RS</p>
+                    <p style="margin-top: 20px; font-size: 14px;">
+                        Atendemos brechós de todo o Brasil, com consultoria presencial ou remota.
+                    </p>
+                </div>
+                <div class="contato-form">
+                    <form id="formContato">
+                        <input type="text" placeholder="Seu nome" required>
+                        <input type="email" placeholder="Seu e-mail" required>
+                        <input type="text" placeholder="Nome do seu brechó">
+                        <textarea placeholder="Conte sobre seu negócio e o que você precisa..."></textarea>
+                        <button type="submit" class="btn">Solicitar contato</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ===== RODAPÉ ===== -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2026 SRS Consultoria TI. Todos os direitos reservados.</p>
+            <div class="social">
+                <a href="#" target="_blank">📸 Instagram</a>
+                <a href="#" target="_blank">📘 Facebook</a>
+                <a href="#" target="_blank">💼 LinkedIn</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('formContato').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('✅ Mensagem enviada! Em breve entraremos em contato.');
+            this.reset();
+        });
+
+        // Scroll suave para os links do menu
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
