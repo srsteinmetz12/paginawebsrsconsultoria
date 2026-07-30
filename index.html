@@ -96,10 +96,22 @@
 
         /* Ícone (símbolo) */
         .logo-icon {
-            font-size: 34px;
-            color: #D4AF37;
-            transition: font-size 0.4s ease;
-        }
+			display: flex;
+			align-items: center;
+			line-height: 0; /* remove espaços extras */
+			transition: transform 0.4s ease;
+		}
+		.logo-icon svg {
+			width: 40px;
+			height: 40px;
+			transition: width 0.4s ease, height 0.4s ease;
+		}
+
+		/* Quando o header encolher ao rolar */
+		header.scrolled .logo-icon svg {
+			width: 30px;
+			height: 30px;
+		}
         header.scrolled .logo-icon {
             font-size: 24px;
         }
@@ -680,8 +692,19 @@
             <div class="logo">
                 <!-- Ícone (símbolo da marca) -->
                 <div class="logo-icon">
-                    <i class="fas fa-laptop-code"></i> <!-- Você pode trocar por qualquer ícone do Font Awesome -->
-                </div>
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 80" width="40" height="40" style="display: block;">
+						<defs>
+							<style>
+								.bg { fill: #1a2a4a; }
+								.text { font-family: 'Montserrat', 'Helvetica Neue', Arial, sans-serif; font-weight: 700; font-size: 28px; fill: #ffffff; text-anchor: middle; letter-spacing: 2px; }
+								.dot { fill: #c9a84c; }
+							</style>
+						</defs>
+						<rect x="0" y="0" width="80" height="80" rx="16" class="bg" />
+						<text x="40" y="52" class="text">SRS</text>
+						<circle cx="40" cy="72" r="4" class="dot" />
+					</svg>
+				</div>
                 <div class="logo-text">
                     <span class="brand">SRS <span class="gold">Consultoria</span> TI</span>
                     <span class="slogan">Gestão inteligente para brechós</span>
